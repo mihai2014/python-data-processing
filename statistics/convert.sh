@@ -1,2 +1,2 @@
 #jupyter nbconvert --to html test_latex.ipynb
-jupyter nbconvert --to html central_limit_theorem.ipynb
+jupyter nbconvert --to html logistic1.ipynb
