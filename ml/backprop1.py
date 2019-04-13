@@ -9,29 +9,29 @@ epochs = 10000
 alpha = 0.01
 
 #weights
-w1 = 0.1
-w2 = 0.2
-w3 = 0.3
-w4 = 0.4
-w5 = 0.5
-w6 = 0.6
-w7 = 0.7
-w8 = 0.8
-w9 = 0.9
-w10= 0.1
+w1 = 1
+w2 = 1
+w3 = 1
+w4 = 1
+w5 = 1
+w6 = 1
+w7 = 1
+w8 = 1
+w9 = 1
+w10= 1
 
 #bias
-b1 = 0.5
-b2 = 0.5
+b1 = 1
+b2 = 1
 
 #input
 x1 = 1
-x2 = 4
-x3 = 5
+x2 = 20
+x3 = 50
 
 #target
 t1 = 0.1
-t2 = 0.05
+t2 = 0.8
 
 
 # Activation (sigmoid) function
@@ -139,7 +139,7 @@ for i in range(epochs):
 print("Final result:")
 print("Targets:",t1,t2)
 print("Outputs:",o1,o2)
-#print("Error:",sse)
+print("Final weights:",w1,w2,w3,w4,w5,w6,w7,w8,w9,w10)
 
 pd.DataFrame(errList, columns=['SSE']).plot()
 plt.savefig("sse.png")
