@@ -1,2 +1,2 @@
 #jupyter nbconvert --to html test_latex.ipynb
-jupyter nbconvert --to html introduction.ipynb
+jupyter nbconvert --to html linear_proof.ipynb
