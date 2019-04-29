@@ -1,0 +1,133 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block tags %}
+<title>Statistics</title>
+<meta name="keywords" content="variance, covariance, standard deviation, correlation">
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+
+<!--
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+-->
+
+<script type="text/javascript" async src="/static/MathJax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<!--
+<script type="text/javascript" async src='{% static "MathJax/MathJax.js?config=TeX-MML-AM_CHTML" %}'></script>
+-->
+
+<style>
+.f{
+    color:blue;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+
+
+<h3 style="text-align: center;"><strong>Variance</strong></h3>
+<h3 style="text-align: center;"><strong>Covariance</strong></h3>
+<h3 style="text-align: center;"><strong>Standard deviation</strong></h3>
+<h3 style="text-align: center;"><strong>Correlation</strong></h3>
+
+<br><br>
+
+<p>Mean(average) is the "center weight" of the data</p>
+<p>Population mean: <span class="f"> $\mu = {\sum_{i=1}^{n} x_{i} \over n}$</span></p>
+<p>Sample mean: <span class="f">$\bar{x} = {\sum_{i=1}^{n} x_{i} \over n}$</span></p>
+<p>The sum of deviations of data values from the mean is zero: $\sum _{ i=1 }^{ n }{ ({ x }_{ i }-mean) = 0 } $ </p>
+
+<hr>
+
+<p>Variance: measure of variability (spread around) the mean</p>
+<p>(not standardized - scale dependent)</p>
+<p>Population variance: <span class="f">$\sigma^2={\sum_{i=1}^{n} (x_{i}-\mu)^2 \over n}$</span></p>
+<p>Sample variance: <span class="f">$S^2={\sum_{i=1}^{n} (x_{i}-\bar{x})^2 \over n-1}$</span></p>
+
+<hr>
+
+<p>Standard deviation: measure of variability (spread around) the mean</p>
+<p>(standardized - not scale dependend - adimensional)</p>
+<p>Standard deviation for population: <span class="f">$\sigma = \sqrt{\sum_{i=1}^{n}{(x_i - \mu)}^2 \over n}$</span></p>
+<p>Standard deviation for a sample: <span class="f">$S = \sqrt{\sum_{i=1}^{n}{(x_i - \bar{x})}^2 \over n - 1}$</span></p>
+
+<hr>
+
+<p>Covariance: measure of relationship between the variances(variability) of two variables</p>
+<p>(not standardized - scale dependent)</p>
+<p>Population covariance: <span class="f">$cov(x,y)=\frac { \sum _{ i=1 }^{ n }{ ({ x }_{ i }-{ \mu }_{ x } )({ y }_{ i }-{ \mu }_{ y } ) }  }{ n } $</span></p>
+<p>Sample covariance: <span class="f">$cov(x,y)=\frac { \sum _{ i=1 }^{ n }{ ({ x }_{ i }-\overline { x } )({ y }_{ i }-\overline { y } ) }  }{ n-1 } $</span></p>
+
+<hr>
+
+<p>Correlation(Pearson coefficient): measure of relationship between the variances(variability) of two variables</p>
+<p>(standardized - not scale dependend - adimensional)</p>
+
+<p>Population: <span class="f">$ { r }_{ pop }=cor(x,y)=\frac { cov(x,y) }{ { \sigma  }_{ x }{ \sigma  }_{ y } } =\frac { \frac { 1 }{ n } \sum _{ i=1 }^{ n }{ ({ x }_{ i }-{ \mu  }_{ x })({ y }_{ i }-{ \mu  }_{ y }) }  }{ \sqrt { \frac { 1 }{ n } \sum _{ i=1 }^{ n }{ { ({ x }_{ i }-{ \mu  }_{ x }) }^{ 2 } }  } \sqrt { \frac { 1 }{ n } \sum _{ i=1 }^{ n }{ { ({ y }_{ i }-{ \mu  }_{ y }) }^{ 2 } }  }  } $</span></p>
+
+<p><span class="f">$ { r }_{ pop }=\frac { \sum { ({ x }-{ \mu  }_{ x })({ y }-{ \mu  }_{ y }) }  }{ \sqrt { \sum { { ({ x }-{ \mu  }_{ x }) }^{ 2 } }  } \sqrt { \sum { { ({ y }-{ \mu  }_{ y }) }^{ 2 } }  }  } =\frac { n\sum { xy-\sum { x\sum { y }  }  }  }{ \sqrt { n\sum { { x }^{ 2 }-({ \sum { x) }  }^{ 2 } }  } \sqrt { n\sum { { y }^{ 2 }-({ \sum { y) }  }^{ 2 } }  }  } $</span></p>
+
+<p>Sample: <span class="f">$ { r }_{ sample }=cor(x,y)=\frac { cov(x,y) }{ { \sigma  }_{ x }{ \sigma  }_{ y } } =\frac { \frac { 1 }{ n-1 } \sum _{ i=1 }^{ n }{ ({ x }_{ i }-\overline { x } )({ y }_{ i }-\overline { y } ) }  }{ \sqrt { \frac { 1 }{ n-1 } \sum _{ i=1 }^{ n }{ { ({ x }_{ i }-\overline { x } ) }^{ 2 } }  } \sqrt { \frac { 1 }{ n-1 } \sum _{ i=1 }^{ n }{ { ({ y }_{ i }-\overline { y } ) }^{ 2 } }  }  }   $</span></p>
+
+<p><span class="f">$ { r }_{ sample }=\frac { \sum { ({ x }-\overline { x } )({ y }-\overline { y } ) }  }{ \sqrt { \sum { { ({ x }-{ \overline { x }  }) }^{ 2 } }  } \sqrt { \sum { { ({ y }-{ \overline { y }  }) }^{ 2 } }  }  } =\frac { n\sum { xy-\sum { x\sum { y }  }  }  }{ \sqrt { n\sum { { x }^{ 2 }-({ \sum { x) }  }^{ 2 } }  } \sqrt { n\sum { { y }^{ 2 }-({ \sum { y) }  }^{ 2 } }  }  }   $</span></p>
+
+<p>see proof1-below</p>
+
+<hr>
+
+<p>Slope of regression line</p>
+
+<p><span class="f">$ m=r\frac { { \sigma  }_{ y } }{ { \sigma  }_{ x } } =\frac { \frac { \sum { xy }  }{ n } -{ \mu  }_{ x }{ \mu  }_{ y } }{ \frac { \sum { { x }^{ 2 } }  }{ n } -{ { (\mu  }_{ x }) }^{ 2 } } =\frac { { \mu  }_{ xy }-{ \mu  }_{ x }{ \mu  }_{ y } }{ { \mu  }_{ { x }^{ 2 } }-{ { (\mu  }_{ x }) }^{ 2 } } $</span></p>
+
+<p><span class="f">$ m=r\frac { { S }_{ y } }{ { S }_{ x } } =\frac { \frac { \sum { xy }  }{ n } -\overline { x } \cdot \overline { y }  }{ \frac { \sum { { x }^{ 2 } }  }{ n } -{ (\overline { x } ) }^{ 2 } } =\frac { \overline { xy } -\overline { x } \cdot \overline { y }  }{ \overline { { x }^{ 2 } } -{ (\overline { x } ) }^{ 2 } }  $</span></p>
+
+<p>see proof2-below</p>
+
+<hr>
+<br>
+
+<p><u>Proof1</u></p>
+
+<p>$ { r }_{ sample }=cor(x,y)=\frac { cov(x,y) }{ { \sigma  }_{ x }{ \sigma  }_{ y } } =\frac { \frac { 1 }{ n-1 } \sum _{ i=1 }^{ n }{ ({ x }_{ i }-\overline { x } )({ y }_{ i }-\overline { y } ) }  }{ \sqrt { \frac { 1 }{ n-1 } \sum _{ i=1 }^{ n }{ { ({ x }_{ i }-\overline { x } ) }^{ 2 } }  } \sqrt { \frac { 1 }{ n-1 } \sum _{ i=1 }^{ n }{ { ({ y }_{ i }-\overline { y } ) }^{ 2 } }  }  } =\frac { \sum { ({ x }-\overline { x } )({ y }-\overline { y } ) }  }{ \sqrt { \sum { { ({ x }_{ i }-\overline { x } ) }^{ 2 } }  } \sqrt { \sum { { ({ y }_{ i }-\overline { y } ) }^{ 2 } }  }  }   $</p>
+
+
+<p>Having these relations:</p>
+
+<p>$ \overline { x } =\frac { \sum { x }  }{ n } \Rightarrow \sum { x } =n\overline { x } \\ \overline { y } =\frac { \sum { y }  }{ n } \Rightarrow \sum { y } =n\overline { y } \\ \sum { (x-\overline { x } )=0 } \\ \sum { (y-\overline { y } )=0 }   $</p>
+
+<p>Will follow:</p>
+
+<p>Nominator:</p>
+
+<p>$\sum { (x-\overline { x } )(y-\overline { y } ) } =\sum { \left\{ y(x-\overline { x } )-\overline { y } (x-\overline { x } ) \right\}  } =\\ =\sum { xy } -\sum { \overline { x }  } y-\sum { \overline { y } (x-\overline { x } ) } =\\ =\sum { xy } -\overline { x } \sum { y } -\overline { y } \sum { (x-\overline { x } ) } =\\ =\sum { xy } -\overline { x } ny - \overline { y } \cdot 0=\\ =\sum { xy } -n\overline { x } \overline { y } $</p>
+
+<p>Denominator:</p>
+
+<p>$\sum { { (x-\overline { x } ) }^{ 2 } } =\sum { (x-\overline { x } )(x-\overline { x } )= } \\ =\sum { x } (x-\overline { x } )\quad -\quad \overline { x } \sum { (x-\overline { x } ) } =\\ =\sum { { x }^{ 2 } } -\overline { x } \sum { x } -\quad \overline { x } \cdot 0=\\ =\sum { { x }^{ 2 } } -\quad \overline { x } n\overline { x } =\sum { { x }^{ 2 } } -n{ \overline { x }  }^{ 2 }$</p>
+
+<p>Similarly:</p>
+
+<p>$\sum { { (y-\overline { y } ) }^{ 2 } } =\sum { { y }^{ 2 } } -n{ \overline { y }  }^{ 2 }$</p>
+
+<p>So:</p>
+
+<p>$r=\frac { \sum { xy } -n\overline { x } \overline { y }  }{ \sqrt { \sum { { x }^{ 2 } } -n{ \overline { x }  }^{ 2 } } \sqrt { \sum { { y }^{ 2 } } -n{ \overline { y }  }^{ 2 } }  } =\frac { \sum { xy } -n\frac { \sum { x }  }{ n } \frac { \sum { y }  }{ n }  }{ \sqrt { \sum { { x }^{ 2 } } -n\frac { { (\sum { x) }  }^{ 2 } }{ { n }^{ 2 } }  } \sqrt { \sum { { y }^{ 2 } } -n\frac { { (\sum { y) }  }^{ 2 } }{ { n }^{ 2 } }  }  } =$</p>
+
+<p>$=\frac { \sum { xy } -\frac { 1 }{ n } \sum { x } \sum { y }  }{ \sqrt { \sum { { x }^{ 2 } } -\frac { { (\sum { x) }  }^{ 2 } }{ { n } }  } \sqrt { \sum { { y }^{ 2 } } -\frac { { (\sum { y) }  }^{ 2 } }{ { n } }  }  } =$ (multiplying with n at nominator and denominator) </p>
+
+<p>$ =\frac { n\sum { xy-\sum { x\sum { y }  }  }  }{ \sqrt { n\sum { { x }^{ 2 }-({ \sum { x) }  }^{ 2 } }  } \sqrt { n\sum { { y }^{ 2 }-({ \sum { y) }  }^{ 2 } }  }  }   $</p>
+
+
+<p><u>Proof 2</u></p>
+
+<p>$ m=r\frac { { S }_{ y } }{ { S }_{ x } } =\frac { \sum { ({ x }-\overline { x } )({ y }-\overline { y } ) }  }{ \sqrt { \sum { { ({ x }-{ \overline { x }  }) }^{ 2 } }  } \sqrt { \sum { { ({ y }-{ \overline { y }  }) }^{ 2 } }  }  } \cdot \frac { \sqrt { \sum { { ({ y }-{ \overline { y }  }) }^{ 2 } }  }  }{ \sqrt { \sum { { ({ x }-{ \overline { x }  }) }^{ 2 } }  }  } =\\ =\frac { \sum { ({ x }-\overline { x } )({ y }-\overline { y } ) }  }{ \sum { { ({ x }-{ \overline { x }  }) }^{ 2 } }  } =\frac { \sum { xy } -n\overline { x } \overline { y }  }{ \sum { { x }^{ 2 }-n{ \overline { x }  }^{ 2 } }  } =\frac { \frac { \sum { xy }  }{ n } -\overline { x } \overline { y }  }{ \frac { \sum { { x }^{ 2 } }  }{ n } -{ \overline { x }  }^{ 2 } } =\frac { \overline { xy } -\overline { x } \overline { y }  }{ \overline { { x }^{ 2 } } -{ \overline { x }  }^{ 2 } }  $</p>
+
+
+{% endblock %}
+
