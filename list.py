@@ -1,5 +1,6 @@
 import os
 import re
+from names import names
 
 string = ""
 
@@ -11,8 +12,7 @@ def traverse_dir(dir):
     for item in os.listdir(dir):
     #for item in filterList(os.listdir(dir)):
 
-        #exclude settings folder
-        #if(item != "debug"):
+        #exclude settings folder '.' at the beggining
         avoid = re.findall("^\.(.*)$",item)
         if( avoid == []):
 
@@ -26,12 +26,19 @@ def traverse_dir(dir):
                 html = re.findall("^(.*).html$",item)
                 ipynb = re.findall("^(.*).ipynb$",item)
 
+                #only html and ipynb files
                 if(html != [] or ipynb != []):
                     #startStr = PWD + "/blog/templates/blog/data"
                     startStr = "https://nbviewer.jupyter.org/github/mihai2014/python-data-processing/blob/master"
                     #remove startStr
-                    #relativePath = fullpath[len(startStr):]
                     fullpath = fullpath[1:len(fullpath)]
+
+                    #rename
+                    try:
+                        item = names[item]
+                    except:
+                        pass
+
                     relativePath = startStr + fullpath
                     string += ('<li><a href="%s">%s</a></li>\n' % (relativePath,item))
 
