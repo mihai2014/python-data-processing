@@ -1,3 +1,5 @@
+#generate index.html / topics
+
 import os
 import re
 from names import names
@@ -9,7 +11,7 @@ def traverse_dir(dir):
     global string
     string += '<ul>\n'
 
-    for item in os.listdir(dir):
+    for item in sorted(os.listdir(dir)):
     #for item in filterList(os.listdir(dir)):
 
         #exclude settings folder '.' at the beggining
